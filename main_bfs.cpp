@@ -45,16 +45,6 @@ struct Node
         return x < o.x || (x == o.x && y < o.y);
     }
 };
-
-bool checkcor(int x,int y, int x1, int y1){
-    for (int i = 0; i < 8; i++){
-        if(x + row[i] == x1 && y + col[i] == y1){
-            return true;
-        }
-    }
-    
-    return false;
-}
  
 // Find the minimum number of steps taken by the knight
 // from the source to reach the destination using BFS
@@ -67,9 +57,7 @@ int findShortestDistance(int N, Node src, Node dest)
     // create a queue and enqueue the first node
     queue<Node> q;
     q.push(src);
-    int parameter = 0;
-    int x_check;
-    int y_check;
+
  
     // loop till queue is empty
     while (!q.empty())
@@ -168,6 +156,10 @@ void print_str(const char str[],string prefix,int n, const int lenght, int x, in
 }
 
 int main() {
+  clock_t c_end = clock();
+  long double time_elapsed_ms = 1000.0 * (c_end - c_start) / CLOCKS_PER_SEC;
+  cout << "CPU time used: " << time_elapsed_ms << " ms\n";
+  cout << "CPU time used: " << time_elapsed_ms / 1000.0 << " s\n";
   board catur(0);
   player me(99,99);
   target you(99,99);
@@ -248,10 +240,6 @@ int main() {
 //   for (int i = 0; i<max_step ; i++){
 //         cout<<finish[i] << ' ';
 //   }
-  clock_t c_end = clock();
-  long double time_elapsed_ms = 1000.0 * (c_end - c_start) / CLOCKS_PER_SEC;
-  cout << "CPU time used: " << time_elapsed_ms << " ms\n";
-  cout << "CPU time used: " << time_elapsed_ms / 1000.0 << " s\n";
 
   cout << endl << "Doy want to see the steps?" << endl;
   cout << "Input (Y) if yes and (N) if no" << endl;
@@ -271,6 +259,7 @@ int main() {
         }
         cout << endl;
    }
+
    cout<< "Input (N) to go next, (B) to go back, (C) for input step, (Q) to quit" << endl;
    cin >> userinput;
    if (userinput == "N" || userinput == "n" || userinput == "next"){

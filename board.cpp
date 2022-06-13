@@ -23,15 +23,5 @@ class board {
       board_length_width = n;
     }
 
-    void drawboard(){
-      // for (int i; i<board_length_width; i++)
-      //   for (int j; j < board_length_width; j++)
-      //     board_draw[i][j] = "O";
-
-      // for (int i; i<board_length_width; i++)
-      //   for (int j; j < board_length_width; j++)
-      //     cout << board_draw[i][j] ;
-        
-    }
 };
 
