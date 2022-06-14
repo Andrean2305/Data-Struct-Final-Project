@@ -27,7 +27,8 @@ int knight_move(int board[N+1][N+1], int x, int y, int step, int x_move[], int y
       board[next_x][next_y] = step;
       if (knight_move(board, next_x, next_y, step+1, x_move, y_move)) // recursive method
         return 1;
-      board[x+x_move[k]][y+y_move[k]] = -1; // backtracking
+      board[x+x_move[k]][y+y_move[k]] = -1; // backtracking reset all the visited coordinates 
+                                            // the algorithm will backtrack from first move to the last
     }
   }
 

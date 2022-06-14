@@ -104,7 +104,7 @@ int findShortestDistance(int N, Node src, Node dest)
     return INT_MAX;
 }
 
-void print_str(const char str[],string prefix,int n, const int lenght, int x, int y, int x1, int y1, int max, int finish[], int board)
+void Get_Pattern(const char str[],string prefix,int n, const int lenght, int x, int y, int x1, int y1, int max, int finish[], int board)
     {
         if (lenght == 1)
             {
@@ -117,24 +117,19 @@ void print_str(const char str[],string prefix,int n, const int lenght, int x, in
 
                     string testing = prefix + str[j];
 
-                    // cout << (int)testing[0] - 48 << endl;
                     for (int i = 0; i < max; i++){
                         test[i] = (int) testing[i] - 48;
-                        if(x_now + row[test[i]] >= 0 && x_now + row[test[i]]<= board && y_now + col[test[i]]>= 0 && y_now + col[test[i]]<= board){
+                        if(x_now + row[test[i]] > 0 && x_now + row[test[i]]<= board && y_now + col[test[i]]> 0 && y_now + col[test[i]]<= board){
                             test[i] = (int) testing[i] - 48;
                             x_now += row[test[i]];
                             y_now += col[test[i]];
                         }
-                        // cout << n << endl;
                     }
 
-                    // && x_now >= 0 && x_now <= board && y_now >= 0 && y_now <= board
                     if(x_now == x_target && y_now == y_target){
-                        // cout << "PATTERN = ";
-                        // cout << test[0] << ' ' << test[1] << ' ' << test[2];
+
                         for (int i = 0; i < max; i++){
                             finish[i] = test[i];
-                        // cout << n << endl;
 
                     }
                     }
@@ -148,7 +143,7 @@ void print_str(const char str[],string prefix,int n, const int lenght, int x, in
                 for (int i = 0; i < n; i++){
 
                 // Next character of input added
-                    print_str(str, prefix + str[i], n, lenght - 1,x, y, x1, y1,max, finish,board);
+                    Get_Pattern(str, prefix + str[i], n, lenght - 1,x, y, x1, y1,max, finish,board);
                 // "lenght" is decreased, because we have added a new character
                 }
             }
@@ -224,7 +219,7 @@ int main() {
     cout << "You already reach your target";
   }else {
     cout << endl << "The minimum moves to get to the target is " << findShortestDistance(catur.board_length_width, begin, target) << endl;
-    //   cout << "CPU time used: " << findShortestDistance_time << " ms\n";
+
     max_step = findShortestDistance(catur.board_length_width, begin, target);
     char arr[] = {'0', '1', '2', '3', '4', '5','6','7'};
 
@@ -234,12 +229,12 @@ int main() {
         cout << "The program is autokilling itself due to overload data. You can't see the history";
     return 0;
   }else{
-    print_str(arr, "", n, max_step,me.x_coordinate,me.y_coordinate,you.x_coordinate,you.y_coordinate,max_step,finish,catur.board_length_width);
+    Get_Pattern(arr, "", n, max_step,me.x_coordinate,me.y_coordinate,you.x_coordinate,you.y_coordinate,max_step,finish,catur.board_length_width);
   }
   }
-//   for (int i = 0; i<max_step ; i++){
-//         cout<<finish[i] << ' ';
-//   }
+  for (int i = 0; i<max_step ; i++){
+        cout<<finish[i] << ' ';
+  }
 
   cout << endl << "Doy want to see the steps?" << endl;
   cout << "Input (Y) if yes and (N) if no" << endl;
