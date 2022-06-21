@@ -142,7 +142,7 @@ void Get_Pattern(const char str[],string prefix,int n, const int lenght, int x, 
                // One by one add all characters from "str" and recursively call for "lenght" equals to "lenght"-1
                 for (int i = 0; i < n; i++){
 
-                // Next character of input added
+                // Next character of input added 
                     Get_Pattern(str, prefix + str[i], n, lenght - 1,x, y, x1, y1,max, finish,board);
                 // "lenght" is decreased, because we have added a new character
                 }
